@@ -1,0 +1,60 @@
+{% extends '$index.html' %} 
+{% block content %}
+
+<style>
+  input[type=password] {
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 1rem;
+    border: 1px solid #ced4da;
+    border-radius: .25rem;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    width: 60%;
+  }
+
+  #button {
+    display: inline-block;
+    height: 100%;
+    border: 1px solid #ced4da;
+    font-size: 1rem;
+    font-family: "IBM Plex Mono", monospace;
+    border-radius: .25rem;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    background-color: #444;
+    color: white;
+    cursor: pointer;
+    margin-top: 20px;
+  }
+</style>
+
+  <div class="main">
+    <div style="width: 90%; position: relative;">
+      <h1>PaperDisk</h1>
+      <p>A text-storage service to store and access your writings</p>
+    </div>
+    <form method="POST">
+      <p>> Paper Id: <b>{{code}}</b> < </p>
+      <b>Password:</b>
+      <input type="password" name="password" placeholder=">_" minlength="8"
+        title="Make sure to remember your password for accessing your paper" required>
+      <input type="submit" value="Continue" id="button">
+
+    </form>
+    <hr>
+    <div>
+      <p id="dev">Made by <a href="https://dwijottam-dutta.github.io">@Dwijottam Dutta</a></p>
+    </div>
+  </div>
+
+{% if error %}
+<script>
+  alert("{{error}}")
+</script>
+{% endif %}
+
+
+{% endblock %}
+
