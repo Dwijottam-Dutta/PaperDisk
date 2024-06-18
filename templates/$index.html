@@ -28,6 +28,13 @@
 
 <body>
   {% block content %} {% endblock %}
+
+  <hr>
+  <footer>
+    <p class="dev">Build using <a href="https://en.wikipedia.org/wiki/Flask_(web_framework)">Flask</a></p>
+    <p class="dev">Made by <a href="https://dwijottam-dutta.github.io">@Dwijottam Dutta</a></p>
+  </footer>
+
 </body>
 
 <script>
@@ -37,17 +44,45 @@
     document.getElementById("paper_doc").disabled=false;
   }
 
-  function CREATE_TURNED_ON() {
-    location.href = "/";
+  function SYNC() {
+    alert("Your document will be synced with the new changes made on other devices (if any)")
+    location.reload()
   }
 
   function OPEN_PAPER(){
-    paper_code = prompt("Enter your Paper / Document ID: ")
+    paper_code = prompt("Enter your Paper ID, of the Paper you want to access: ")
     if (paper_code != null) {
       if (paper_code.trim() != "") {
         location.href = `/paper/${paper_code}`
       }
     }
+  }
+
+  function NEW_PAPER() {
+    try {
+      document.querySelectorAll(".info")[0].style.display = "none"
+      document.querySelectorAll(".inline")[0].style.display = "inline-block"
+      document.getElementById("new_paper").style.display = "flex"
+    } catch (error) {
+      location.href = '/'
+    }
+  }
+
+
+  function download() {
+    var element = document.createElement('a');
+
+    text = document.getElementById("paper_doc").value
+
+    element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(text));
+    element.setAttribute('download', "paperdisk-data-encoded");
+
+    element.style.display = 'none';
+    document.body.appendChild(element);
+
+    element.click();
+
+    document.body.removeChild(element);
   }
 </script>
 

@@ -2,20 +2,29 @@
 {% block content %}
 
   <div class="main">
-    <div style="width: 90%; position: relative;">
+    <div style="width: 95%; position: relative;">
+
       <h1>PaperDisk</h1>
-      <p>A text-storage service to store and access your writings</p>
-      <button class="inline" type="button" onclick="OPEN_PAPER()" style="margin-right: 5px;"><i class="far fa-folder-open"></i></button>
+
+      <p style="font-weight: 200; margin-bottom: 25px;">A text-storage service to store and access your paper (documents)</p>
+
+      <div class="inline">
+        <button class="inline-buttons" type="button" onclick="NEW_PAPER()"><i class="far fa-plus-square"></i></button>
+        <button class="inline-buttons" type="button" onclick="OPEN_PAPER()"><i class="far fa-folder-open"></i></button>
+      </div>
+
     </div>
+
     <form action="/paper/{{code}}/update" method="POST">
-      <p>Paper ID: <b>{{code}}</b> | Created on <b>{{date}}</b></p>
+      <p>> Paper Id: <b>{{code}}</b> < </p>
       <textarea id="paper_doc" name="paper" rows="15"
         placeholder="Type your text here in this paper..." disabled="disabled" required
         >{{content}}</textarea>
 
         <div id="form-button">
-          <button type="button" onclick="CREATE_TURNED_ON()"><i class="fas fa-folder-plus"></i> New</button>
-          <button type="button" onclick="EDITING_TURNED_ON()"><i class="far fa-edit"></i> Edit</button>
+          <button type="button" onclick="EDITING_TURNED_ON()"><i class="fas fa-pen-nib"></i> Edit</button>
+          <button type="button" onclick="download()"><i class="fas fa-download"></i></button>
+          <button type="button" onclick="SYNC()"><i class="fas fa-sync"></i> Sync</button>
         </div>
 
         <input type="submit" value="Save" id="save-button">
@@ -25,10 +34,6 @@
             d="M569.5 440C588 472 564.8 512 527.9 512H48.1c-36.9 0-60-40.1-41.6-72L246.4 24c18.5-32 64.7-32 83.2 0l239.9 416zM288 354c-25.4 0-46 20.6-46 46s20.6 46 46 46 46-20.6 46-46-20.6-46-46-46zm-43.7-165.3l7.4 136c.3 6.4 5.6 11.3 12 11.3h48.5c6.4 0 11.6-5 12-11.3l7.4-136c.4-6.9-5.1-12.7-12-12.7h-63.4c-6.9 0-12.4 5.8-12 12.7z" />
         </svg>Make sure you remember, the <b>Paper Id</b> & <b>Password</b> of this paper</p>
     </form>
-    <hr>
-    <div>
-      <p id="dev">Made by <a href="https://dwijottam-dutta.github.io">@Dwijottam Dutta</a></p>
-    </div>
   </div>
 
   {% endblock %}

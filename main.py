@@ -99,7 +99,7 @@ def paper_details(code):
         
         else:
             return render_template(
-                "login-to-paper.html", error="Wrong Password."
+                "login-to-paper.html", error="Wrong Password.", code=code
             )
         
     
