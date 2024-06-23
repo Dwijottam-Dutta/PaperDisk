@@ -81,7 +81,7 @@ def home():
     return render_template("home.html")
 
 
-@app.route('/paper/<code>', methods=['GET', 'POST'])
+@app.route('/paper=<code>', methods=['GET', 'POST'])
 def paper_details(code):
     
     if request.method == "POST":
@@ -122,7 +122,7 @@ def paper_details(code):
         
         
         
-@app.route('/paper/<code>/update', methods=['POST'])
+@app.route('/paper=<code>/update', methods=['POST'])
 def paper_update(code):
     if request.method == "POST":
         
@@ -147,7 +147,11 @@ def paper_update(code):
                 
         else:
             abort(404)
-        
+      
+      
+@app.route('/recover-paper')
+def paper_recovery():
+    return f"<h2>Under construction !!</h2>Recovering Paper feature will be available soon, please co-operate.."
 
 
 app.run(host='0.0.0.0', port=8080)

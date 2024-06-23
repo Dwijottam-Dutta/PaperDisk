@@ -1,47 +1,63 @@
-{% extends '$index.html' %} 
+{% extends '$index.html' %}
 {% block content %}
 
 <div class="main">
-    <div style="width: 95%; position: relative;">
-      <h1>PaperDisk</h1>
-      <p style="font-weight: 200; margin-bottom: 25px;">A text-storage service to store and access your paper (documents)</p>
-      <div class="inline" style="display: none;">
-        <button class="inline-buttons" type="button" onclick="NEW_PAPER()"><i class="far fa-plus-square"></i></button>
-        <button class="inline-buttons" type="button" onclick="OPEN_PAPER()"><i class="far fa-folder-open"></i></button>
-      </div>
+  <div style="width: 95%; position: relative;">
+    <h1>PaperDisk</h1>
+    <p class="desc">A text-storage service to store and access your paper (documents)</p>
+    <div class="inline-div" style="display: none;">
+      <button class="inline-buttons" type="button" onclick="NEW_PAPER()"><i class="far fa-plus-square"></i></button>
+      <button class="inline-buttons" type="button" onclick="OPEN_PAPER()"><i class="far fa-folder-open"></i></button>
     </div>
-
-    <!-- NAVIGATION FORM -->
-    <div class="info">
-      <button class="welcome-buttons" type="button" onclick="NEW_PAPER()"><i class="fas fa-file-signature"></i> Create Paper</button>
-      <button class="welcome-buttons" type="button" onclick="OPEN_PAPER()"><i class="fas fa-folder-open"></i> Open Paper</button>
-    </div>
-
-
-    <!-- NEW PAPER FORM -->
-    <form method="POST" id="new_paper" class="form-invisible">
-      <textarea name="paper" rows="15" placeholder="Your typing space.." data-provide="markdown" required></textarea>
-
-      <div class="field">
-
-        <div class="password-field">
-          <b>Password:</b>
-          <input placeholder=">_" type="password" name="password" minlength="8"
-            title="Make sure to remember your password for editing and accessing your paper" required>
-        </div>
-
-        <div class="submit-field">
-          <input type="submit" value="Upload" id="button">
-        </div>
-
-      </div>
-    </form>
-
-
-    <!-- OPEN PAPER FORM   --  COMING SOON-->
-    <form method="GET" id="open_paper" class="form-invisible">
-
-    </form>
   </div>
+
+  <!-- NAVIGATION FORM -->
+  <div class="get-started-div">
+    <button class="welcome-buttons" type="button" onclick="NEW_PAPER()"><i class="fas fa-file-signature"></i> Create
+      Paper</button>
+    <button class="welcome-buttons" type="button" onclick="OPEN_PAPER()"><i class="fas fa-folder-open"></i> Open
+      Paper</button>
+    <!-- <button class="welcome-buttons" type="button" onclick="RECOVER_PAPER()"><i class="fas fa-trash-restore"></i>
+      Recovery Paper</button> -->
+  </div>
+
+
+  <!-- NEW PAPER FORM -->
+  <form method="POST" id="new_paper_form">
+    <textarea name="paper" rows="15" placeholder="Your typing space.." data-provide="markdown" required></textarea>
+
+    <div class="field">
+
+      <div class="password-field">
+        <b>Password:</b>
+        <input placeholder=">_" type="password" name="password" minlength="8"
+          title="Make sure to remember your password for editing and accessing your paper" required>
+      </div>
+
+      <div class="submit-field">
+        <input type="submit" value="Upload" id="button">
+      </div>
+
+    </div>
+  </form>
+
+
+  <!-- OPEN PAPER FORM   --  COMING SOON-->
+  <form id="open_paper_form">
+
+    <div class="open-field">
+
+      <b style="padding-bottom: 10px;">Paper ID:</b>
+      <input placeholder="XXXX" type="text" name="paper" id="paper_code_open_button" maxlength="4" minlength="4" title="Enter your Paper ID" required>
+      <div class="open-field-button">
+        <input type="button" value="Open" onclick="OPEN_PAPER_CODE_FROM_BUTTON()">
+      </div>
+      <p id="recovery-option">Forgot Paper ID? <a href="/recover-paper">Try Recovery</a></p>
+
+    </div>
+
+
+  </form>
+</div>
 
 {% endblock %}

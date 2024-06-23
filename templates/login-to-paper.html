@@ -1,56 +1,26 @@
-{% extends '$index.html' %} 
+{% extends '$index.html' %}
 {% block content %}
 
-<style>
-  input[type=password] {
-    font-family: "IBM Plex Mono", monospace;
-    font-size: 1rem;
-    border: 1px solid #ced4da;
-    border-radius: .25rem;
-    padding-top: 5px;
-    padding-bottom: 5px;
-    width: 60%;
-  }
-
-  #button {
-    display: inline-block;
-    height: 100%;
-    border: 1px solid #ced4da;
-    font-size: 1rem;
-    font-family: "IBM Plex Mono", monospace;
-    border-radius: .25rem;
-    padding-left: 10px;
-    padding-right: 10px;
-    padding-top: 5px;
-    padding-bottom: 5px;
-    background-color: #444;
-    color: white;
-    cursor: pointer;
-    margin-top: 20px;
-  }
-</style>
-
-  <div class="main">
-    <div style="width: 95%; position: relative;">
-      <h1>PaperDisk</h1>
-      <p style="font-weight: 200; margin-bottom: 25px;">A text-storage service to store and access your paper (documents)</p>
-    </div>
-    <form method="POST">
-      <p>> Paper Id: <b>{{code}}</b> < </p>
-      <b>Password:</b>
-      <input type="password" name="password" placeholder=">_" minlength="8"
-        title="Make sure to remember your password for accessing your paper" required>
-      <input type="submit" value="Continue" id="button">
-
-    </form>
+<div class="main">
+  <div style="width: 95%; position: relative;">
+    <h1>PaperDisk</h1>
+    <p class="desc">A text-storage service to store and access your paper (documents)</p>
   </div>
+  <form method="POST" id="only_password_form">
+    <p>> Paper ID: <b>{{code}}</b> <</p>
+    <b style="margin-top: 20px;">Password:</b>
+    <input type="password" name="password" placeholder=">_" minlength="8"
+      title="Make sure to remember your password for accessing your paper" style="width: 70%;" required>
+    <input type="submit" value="Continue" style="margin-top: 10px;">
 
-{% if error %}
-<script>
-  alert("{{error}}")
-</script>
-{% endif %}
+    <p id="recovery-option">Forgot Password of Paper? <a href="/recover-paper">Try Recovery</a></p>
+
+    {% if error %}
+    <p style="margin-top: 20px;">Wrong Password</p>
+    {% endif %}
+  </form>
+
+</div>
 
 
 {% endblock %}
-

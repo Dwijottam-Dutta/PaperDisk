@@ -24,14 +24,14 @@
     rel="stylesheet">
 </head>
 
-<link rel="stylesheet" href="{{url_for('static', filename='style.css')}}"/>
+<link rel="stylesheet" href="{{url_for('static', filename='style.css')}}" />
 
 <body>
   {% block content %} {% endblock %}
 
   <hr>
   <footer>
-    <p class="dev">Made by <a href="https://dwijottam-dutta.github.io">@Dwijottam Dutta</a></p>
+    <p class="dev">Made by <a href="https://dwijottam-dutta.github.io">Dwijottam Dutta</a></p>
   </footer>
 
 </body>
@@ -40,7 +40,7 @@
   function EDITING_TURNED_ON() {
     document.getElementById("form-button").style.display = "none";
     document.getElementById("save-button").style.display = "block";
-    document.getElementById("paper_doc").disabled=false;
+    document.getElementById("paper_doc").disabled = false;
   }
 
   function SYNC() {
@@ -48,22 +48,35 @@
     location.reload()
   }
 
-  function OPEN_PAPER(){
-    paper_code = prompt("Enter your Paper ID, of the Paper you want to access: ")
-    if (paper_code != null) {
-      if (paper_code.trim() != "") {
-        location.href = `/paper/${paper_code}`
-      }
+  function OPEN_PAPER() {
+
+    try {
+      document.querySelectorAll(".get-started-div")[0].style.display = "none"
+      document.querySelectorAll(".inline-div")[0].style.display = "inline-block"
+      document.getElementById("open_paper_form").style.display = "flex"
+      document.getElementById("new_paper_form").style.display = "none"
+    } catch (error) {
+      location.href = '/'
     }
   }
 
   function NEW_PAPER() {
     try {
-      document.querySelectorAll(".info")[0].style.display = "none"
-      document.querySelectorAll(".inline")[0].style.display = "inline-block"
-      document.getElementById("new_paper").style.display = "flex"
+      document.querySelectorAll(".get-started-div")[0].style.display = "none"
+      document.querySelectorAll(".inline-div")[0].style.display = "inline-block"
+      document.getElementById("new_paper_form").style.display = "flex"
+      document.getElementById("open_paper_form").style.display = "none"
     } catch (error) {
       location.href = '/'
+    }
+  }
+
+  function OPEN_PAPER_CODE_FROM_BUTTON() {
+    paper_code = document.getElementById("paper_code_open_button").value
+    if (paper_code != null) {
+      if (paper_code.trim() != "") {
+        location.href = `/paper=${paper_code}`
+      }
     }
   }
 
