@@ -1,16 +1,6 @@
 {% extends '$index.html' %}
 {% block content %}
 
-<div class="main">
-  <div style="width: 95%; position: relative;">
-    <h1>PaperDisk</h1>
-    <p class="desc">A text-storage service to store and access your paper (documents)</p>
-    <div class="inline-div" style="display: none;">
-      <button class="inline-buttons" type="button" onclick="NEW_PAPER()"><i class="far fa-plus-square"></i></button>
-      <button class="inline-buttons" type="button" onclick="OPEN_PAPER()"><i class="far fa-folder-open"></i></button>
-    </div>
-  </div>
-
   <!-- NAVIGATION FORM -->
   <div class="get-started-div">
     <button class="welcome-buttons" type="button" onclick="NEW_PAPER()"><i class="fas fa-file-signature"></i> Create
@@ -58,6 +48,5 @@
 
 
   </form>
-</div>
 
 {% endblock %}

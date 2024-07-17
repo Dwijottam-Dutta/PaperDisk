@@ -22,24 +22,25 @@ body {
 /* GLOBAL CHANGES in ELEMENTS */
 p {
   font-size: medium;
-  margin-top: 10px;
   line-height: normal;
   margin-bottom: 5px;
 }
 
-b{
+b {
   line-height: normal;
 }
 
 form {
   width: 90%;
+  position: relative;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
 }
 
-input[type=password],input[type=text] {
+input[type=password],
+input[type=text] {
   font-family: "IBM Plex Mono", monospace;
   font-size: 1rem;
   border: 1px solid #ced4da;
@@ -65,6 +66,15 @@ button {
   cursor: pointer;
 }
 
+strong {
+  font-size: 16px;
+}
+
+.li-icon {
+  padding-right: 10px;
+  padding-top: 4px;
+  font-size: 14px;
+}
 
 
 
@@ -76,8 +86,10 @@ h1 {
   font-weight: 400;
   margin-block-end: 0.07em;
 }
-.desc{
-  font-weight: 200; 
+
+.desc {
+  margin-top: 10px;
+  font-weight: 200;
   margin-bottom: 25px;
 }
 
@@ -93,23 +105,16 @@ h1 {
   cursor: pointer;
   background-color: transparent;
   color: #444;
-  padding-left: 8px;
-  padding-right: 8px;
+  padding-left: 10px;
+  padding-right: 10px;
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
 
-
-/* STARTING BUTTONS FORM */
-.get-started-div {
-  margin-top: 20px;
-  display: flex;
-  flex-direction: column;
-}
-
 /* CHANGING DEFAULT BUTTON */
 .welcome-buttons {
+  cursor: pointer;
   background-color: transparent;
   color: #444;
   margin-bottom: 10px;
@@ -120,17 +125,26 @@ h1 {
 
 /* STYLING FOR ALL FORMS */
 
-#new_paper_form, #open_paper_form{
+.get-started-div {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+#new_paper_form,
+#open_paper_form {
   display: none;
 }
 
-#only_password_form{
+#only_password_form {
   width: 70%;
 }
 
+/* DOCUMENT/PAPER EDITOR */
+#paper_doc,
 textarea {
   font-family: "IBM Plex Mono", monospace;
-  margin-bottom: 10px;
+  margin-bottom: 6px;
   margin-top: 10px;
   width: 100%;
   resize: none;
@@ -140,6 +154,83 @@ textarea {
   border: 1px solid #ced4da;
   border-radius: .25rem;
   transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+}
+
+#paper-nav {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  border: 1px solid #ced4da;
+  border-radius: .25rem;
+  transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+  width: 101%;
+  padding: 0.3em;
+}
+
+#toast {
+  display: flex;
+  position: absolute;
+  font-size: smaller;
+  bottom: 60px;
+  background-color: antiquewhite;
+  padding: 3px;
+  border-radius: .25rem;
+  padding-left: 10px;
+  padding-right: 10px;
+  text-decoration: solid;
+  transform: scale(0);
+  transform-origin: bottom;
+  box-shadow: 0 0 6px rgba(0, 0, 0, 0.15);
+  transition: transform 0.4s ease;
+}
+
+#toast.show{
+  transform: scale(1);
+  transition: transform 0.4s ease;
+}
+
+.menu-btn {
+  position: relative;
+}
+
+.menu {
+  margin: 0;
+  z-index: 10000;
+  bottom: 50px;
+  right: 0;
+  padding: 0;
+  background: white;
+  position: absolute;
+  border-radius: 4px;
+  transform: scale(0);
+  transform-origin: bottom right;
+  box-shadow: 0 0 6px rgba(0, 0, 0, 0.15);
+  transition: transform 0.2s ease;
+}
+
+.menu-btn.show .menu {
+  transform: scale(1);
+}
+
+.menu-btn.show .menu li {
+  display: flex;
+  align-items: center;
+  list-style: none;
+  font-size: 16px;
+  margin-bottom: 2px;
+  padding: 9px 15px;
+  cursor: pointer;
+  box-shadow: none;
+  border-radius: 0;
+  justify-content: flex-start;
+  transition: transform 1s ease-in-out;
+  /* border-bottom: 1px solid #ced4da; */
+}
+
+.menu-btn.show .menu li:hover {
+  transition: 0.2s ease-in-out;
+  background-color: rgba(0, 0, 0, 0.049);
 }
 
 .field {
@@ -158,7 +249,7 @@ textarea {
 }
 
 
-.open-field{
+.open-field {
   display: flex;
   flex-direction: column;
   border: 1.5px solid #ced4da;
@@ -175,15 +266,15 @@ textarea {
   padding-top: 15px;
 }
 
-#recovery-option{
+#recovery-option {
   font-size: 13px;
-    font-weight: 500;
-    margin-top: 20px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding-left: 10px;
-    padding-right: 10px;
+  font-weight: 500;
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-left: 10px;
+  padding-right: 10px;
 }
 
 
@@ -215,6 +306,12 @@ footer {
   margin-top: 0;
   font-weight: 500;
 }
+
+
+
+
+
+
 
 
 

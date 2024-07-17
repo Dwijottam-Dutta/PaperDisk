@@ -1,36 +1,55 @@
-{% extends '$index.html' %} 
-{% block content %}
+{% extends '$index.html' %} {% block content %}
 
-  <div class="main">
-    <div style="width: 95%; position: relative;">
+<form action="/paper={{code}}/update" method="POST">
+  
+  <textarea id="paper_doc" name="paper" rows="15" placeholder="Type your text here in this paper..." disabled="disabled" required>{{content}}</textarea>
 
-      <h1>PaperDisk</h1>
+  <div id="toast">You can now edit your paper</div>
 
-      <p class="desc">A text-storage service to store and access your paper (documents)</p>
+  <div id="paper-nav">
 
-      <div class="inline-div">
-        <button class="inline-buttons" type="button" onclick="NEW_PAPER()"><i class="far fa-plus-square"></i></button>
-        <button class="inline-buttons" type="button" onclick="OPEN_PAPER()"><i class="far fa-folder-open"></i></button>
-      </div>
+    <label>&nbsp;<i class="far fa-file-alt"></i> Paper ID: <b>{{code}}</b></label>
+    <div>
 
+      <button type="button" class="inline-buttons" id="edit-button" onclick="EDITING_TURNED_ON()">
+        <i class="fas fa-pen-nib"></i> <b>Edit</b>
+      </button>
+
+      <button type="submit" class="inline-buttons" id="save-button">
+        <i class="far fa-save"></i> <b>Save</b>
+      </button>
+
+      <button type="button" class="inline-buttons menu-btn" onclick="SHOWMENU(this)">
+        <i class="fas fa-ellipsis-v"></i>
+
+        <ul class="menu">
+          <li type="button" onclick="PRINT()">
+            <i class="fas fa-print li-icon"></i> <strong>Print</strong>
+          </li>
+
+          <li type="button" onclick="download()">
+            <i class="fas fa-download li-icon"></i> <strong>Download</strong>
+          </li>
+
+          <li type="button" onclick="SYNC()">
+            <i class="fas fa-sync li-icon"></i> <strong>Sync</strong>
+          </li>
+
+          <li type="button" onclick="DETAILS()">
+            <i class="fas fa-info-circle" style="padding-right: 10px;"></i> <strong>Details</strong>
+          </li>
+        </ul>
+
+      </button>
     </div>
-
-    <form action="/paper={{code}}/update" method="POST">
-      <p>> Paper Id: <b>{{code}}</b> < </p>
-      <textarea id="paper_doc" name="paper" rows="15"
-        placeholder="Type your text here in this paper..." disabled="disabled" required
-        >{{content}}</textarea>
-
-        <div id="form-button">
-          <button type="button" onclick="EDITING_TURNED_ON()"><i class="fas fa-pen-nib"></i> Edit</button>
-          <button type="button" onclick="download()"><i class="fas fa-download"></i></button>
-          <button type="button" onclick="SYNC()"><i class="fas fa-sync"></i> Sync</button>
-        </div>
-
-        <input type="submit" value="Save" id="save-button">
-
-      <p style="margin-top: 40px;"><i class="fas fa-exclamation-circle"></i> Make sure you remember, the <b>Paper Id</b> & <b>Password</b> of this paper</p>
-    </form>
   </div>
 
-  {% endblock %}
+  <input type="submit" value="Save" id="save-button" />
+
+  <!-- <p style="margin-top: 40px">
+    <i class="fas fa-exclamation-circle"></i> Make sure you remember, the
+    <b>Paper Id</b> & <b>Password</b> of this paper
+  </p> -->
+</form>
+
+{% endblock %}

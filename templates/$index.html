@@ -27,7 +27,23 @@
 <link rel="stylesheet" href="{{url_for('static', filename='style.css')}}" />
 
 <body>
-  {% block content %} {% endblock %}
+  <div class="main">
+    <div style="width: 95%; position: relative;">
+
+      <h1>PaperDisk</h1>
+
+      <p class="desc">A text-storage service to store and access your paper (documents)</p>
+
+      <div class="inline-div">
+        <button class="inline-buttons" type="button" onclick="NEW_PAPER()"><i class="far fa-plus-square"></i></button>
+        <button class="inline-buttons" type="button" onclick="OPEN_PAPER()"><i class="far fa-folder-open"></i></button>
+      </div>
+
+    </div>
+
+    {% block content %} {% endblock %}
+
+  </div>
 
   <hr>
   <footer>
@@ -37,15 +53,29 @@
 </body>
 
 <script>
+  function TOAST(msg, type){
+    const toast = document.getElementById("toast");
+    toast.innerHTML = `<b>${msg}</b>`;
+    toast.classList.add("show")
+
+    setTimeout(() => {
+      toast.classList.remove("show")
+    }, 3000);
+  }
+
   function EDITING_TURNED_ON() {
-    document.getElementById("form-button").style.display = "none";
-    document.getElementById("save-button").style.display = "block";
+    TOAST("You can now edit your document", alert)
+    document.getElementById("save-button").style.display = "inline-block";
+    document.getElementById("edit-button").style.display = "none";
     document.getElementById("paper_doc").disabled = false;
   }
 
   function SYNC() {
-    alert("Your document will be synced with the new changes made on other devices (if any)")
-    location.reload()
+    TOAST("Reloading...", alert)
+
+    setTimeout(() => {
+      location.reload()
+    }, 3500);
   }
 
   function OPEN_PAPER() {
@@ -95,6 +125,21 @@
     element.click();
 
     document.body.removeChild(element);
+
+    TOAST("Downloaded Successfully", alert)
+  }
+
+  function SHOWMENU(elem) {
+    if(elem.classList.contains("show")){
+      elem.classList.remove("show");
+    }
+    else{
+        elem.classList.add("show");
+    }
+  }
+
+  function PRINT() {
+    alert("Printing Service is not available at this moment")
   }
 </script>
 
