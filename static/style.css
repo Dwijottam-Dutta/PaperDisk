@@ -177,6 +177,7 @@ textarea {
   padding: 3px;
   border-radius: .25rem;
   padding-left: 10px;
+  text-align: center;
   padding-right: 10px;
   text-decoration: solid;
   transform: scale(0);
@@ -322,10 +323,23 @@ footer {
   }
 
   p {
-    font-size: smaller;
+    font-size: small;
   }
 
   .inline {
     top: 18px;
+  }
+  label {
+    font-size: medium;
+  }
+
+  .inline-div {
+    top: 18px;
+}
+
+}
+@media only screen and (max-width: 350px) {
+  .phone-invisible{
+    display: none;
   }
 }
