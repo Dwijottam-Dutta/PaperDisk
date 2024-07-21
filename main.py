@@ -72,6 +72,8 @@ def home():
         }
 
         collection.insert_one(payload)
+        
+        session['paper_code_verified_for_access'] = new_code
 
         return redirect(url_for("paper_details", code=new_code))
 
@@ -107,7 +109,7 @@ def paper_details(code):
             if session.get("paper_code_verified_for_access") == code:
                 paper_data = collection.find_one({"_code": code})
 
-                return render_template("paper.html", content=paper_data["paper"], date=paper_data["date"], code=code)
+                return render_template("paper.html", content=paper_data["paper"], date=paper_data["date"], code=code, alert='Always remember your Paper ID and Password')
 
             return render_template("login-to-paper.html", code=code)
 

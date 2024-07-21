@@ -60,7 +60,7 @@
 
     setTimeout(() => {
       toast.classList.remove("show")
-    }, 3000);
+    }, 5000);
   }
 
   function EDITING_TURNED_ON() {
@@ -139,8 +139,12 @@
   }
 
   function PRINT() {
-    alert("Printing Service is not available at this moment")
+    TOAST("Printing Service is not available")
   }
+
+  TOAST("{{alert}}")
+
+
 </script>
 
 </html>
