@@ -6,14 +6,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta http-equiv="X-UA-Compatible" content="ie=edge" />
   <title>PaperDisk</title>
-  <meta name="description" content="A text-storage service to store and access your writings">
+  <meta name="description" content="A text-storage service to store and access your documents, through a 4-digit pin">
   <meta name="keywords" content="PasteBin, Free, Dwijottam Dutta">
   <!-- <link rel="apple-touch-icon" sizes="180x180" href="{{url_for('static', filename='apple-touch-icon.png')}}" />
     <link rel="icon" type="image/png" sizes="32x32" href="{{url_for('static', filename='favicon-32x32.png')}}" />
     <link rel="icon" type="image/png" sizes="16x16" href="{{url_for('static', filename='favicon-16x16.png')}}" /> -->
   <meta name="theme-color" content="rgb(18, 18, 18)" />
-  <meta property="og:title" content="PaperDisk by DJ DWAZZ" />
-  <meta property="og:description" content="A text-storage service to store and access your writings" />
+  <meta property="og:title" content="PaperDisk" />
+  <meta property="og:description" content="A text-storage service to store and access your documents, through a 4-digit pin" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" />
   <link rel="icon" type="image/png" href="{{url_for('static', filename='paperdisk.png')}}" />
 
@@ -25,6 +25,7 @@
 </head>
 
 <link rel="stylesheet" href="{{url_for('static', filename='style.css')}}" />
+<link rel="stylesheet" href="{{url_for('static', filename='popup-box.css')}}" />
 
 <body>
   <div class="main">
@@ -51,100 +52,10 @@
   </footer>
 
 </body>
+<script src="{{url_for('static', filename='app.js')}}"></script>
 
 <script>
-  function TOAST(msg, type){
-    const toast = document.getElementById("toast");
-    toast.innerHTML = `<b>${msg}</b>`;
-    toast.classList.add("show")
-
-    setTimeout(() => {
-      toast.classList.remove("show")
-    }, 5000);
-  }
-
-  function EDITING_TURNED_ON() {
-    TOAST("You can now edit your document", alert)
-    document.getElementById("save-button").style.display = "inline-block";
-    document.getElementById("edit-button").style.display = "none";
-    document.getElementById("paper_doc").disabled = false;
-  }
-
-  function SYNC() {
-    TOAST("Reloading...", alert)
-
-    setTimeout(() => {
-      location.reload()
-    }, 3500);
-  }
-
-  function OPEN_PAPER() {
-
-    try {
-      document.querySelectorAll(".get-started-div")[0].style.display = "none"
-      document.querySelectorAll(".inline-div")[0].style.display = "inline-block"
-      document.getElementById("open_paper_form").style.display = "flex"
-      document.getElementById("new_paper_form").style.display = "none"
-    } catch (error) {
-      location.href = '/'
-    }
-  }
-
-  function NEW_PAPER() {
-    try {
-      document.querySelectorAll(".get-started-div")[0].style.display = "none"
-      document.querySelectorAll(".inline-div")[0].style.display = "inline-block"
-      document.getElementById("new_paper_form").style.display = "flex"
-      document.getElementById("open_paper_form").style.display = "none"
-    } catch (error) {
-      location.href = '/'
-    }
-  }
-
-  function OPEN_PAPER_CODE_FROM_BUTTON() {
-    paper_code = document.getElementById("paper_code_open_button").value
-    if (paper_code != null) {
-      if (paper_code.trim() != "") {
-        location.href = `/paper=${paper_code}`
-      }
-    }
-  }
-
-
-  function download() {
-    var element = document.createElement('a');
-
-    text = document.getElementById("paper_doc").value
-
-    element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(text));
-    element.setAttribute('download', "paperdisk-data-encoded");
-
-    element.style.display = 'none';
-    document.body.appendChild(element);
-
-    element.click();
-
-    document.body.removeChild(element);
-
-    TOAST("Downloaded Successfully", alert)
-  }
-
-  function SHOWMENU(elem) {
-    if(elem.classList.contains("show")){
-      elem.classList.remove("show");
-    }
-    else{
-        elem.classList.add("show");
-    }
-  }
-
-  function PRINT() {
-    TOAST("Printing Service is not available")
-  }
-
   TOAST("{{alert}}")
-
-
 </script>
 
 </html>

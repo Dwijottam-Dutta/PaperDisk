@@ -200,23 +200,27 @@ textarea {
   z-index: 10000;
   bottom: 50px;
   right: 0;
+  list-style: none;
   padding: 0;
   background: white;
   position: absolute;
   border-radius: 4px;
   transform: scale(0);
-  transform-origin: bottom right;
+  transform-origin: right bottom;
+  transform-style: flat;
   box-shadow: 0 0 6px rgba(0, 0, 0, 0.15);
-  transition: transform 0.2s ease;
+  transition: transform 0.2s ease-in-out;
 }
 
 .menu-btn.show .menu {
   transform: scale(1);
 }
 
-.menu-btn.show .menu li {
+.menu-btn .menu li {
+  position: relative;
   display: flex;
   align-items: center;
+  flex-direction: row;
   list-style: none;
   font-size: 16px;
   margin-bottom: 2px;
@@ -229,7 +233,7 @@ textarea {
   /* border-bottom: 1px solid #ced4da; */
 }
 
-.menu-btn.show .menu li:hover {
+.menu-btn .menu li:hover {
   transition: 0.2s ease-in-out;
   background-color: rgba(0, 0, 0, 0.049);
 }
@@ -270,7 +274,7 @@ textarea {
 #recovery-option {
   font-size: 13px;
   font-weight: 500;
-  margin-top: 20px;
+  margin-top: 25px;
   display: flex;
   flex-direction: column;
   align-items: center;

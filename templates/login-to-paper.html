@@ -1,7 +1,7 @@
 {% extends '$index.html' %} {% block content %}
 
 <form method="POST" id="only_password_form">
-  <p>> Paper ID: <b>{{code}}</b> <</p>
+  <p style="font-size: medium; margin-top:5px;">Log in <b>-></b> Paper ID: <b><u>{{code}}</u></b></p>
   <b style="margin-top: 20px">Password:</b>
   <input
     type="password"
@@ -12,7 +12,7 @@
     style="width: 70%"
     required
   />
-  <input type="submit" value="Continue" style="margin-top: 10px" />
+  <input type="submit" value="Continue" style="margin-top: 5px" />
 
   <p id="recovery-option">
     Forgot Password of Paper? <a href="/recover-paper">Try Recovery</a>

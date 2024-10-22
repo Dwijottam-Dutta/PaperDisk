@@ -24,8 +24,10 @@ app.config["SECRET_KEY"] = "123456"
 load_dotenv(find_dotenv())
 mongo_password = os.environ.get("MONGODB_PASSWORD")
 
-MONGO_URI = (f"mongodb+srv://dj_dwazz:{mongo_password}@cluster0.mi3ncby.mongodb.net/?retryWrites=true&w=majority"
-             f"&appName=Cluster0")
+MONGO_URI = (
+    f"mongodb+srv://dj_dwazz:{mongo_password}@cluster0.mi3ncby.mongodb.net/?retryWrites=true&w=majority"
+    f"&appName=Cluster0"
+)
 client = MongoClient(MONGO_URI)
 
 dbs = client.list_database_names()
@@ -35,7 +37,7 @@ collection = paper_db.data
 
 # GENERATE [NEW-UNIQUE-SECURE] PAPER ID
 def generate_unique_id(length):
-    codes = collection.distinct('_code')
+    codes = collection.distinct("_code")
 
     while True:
         code = ""
@@ -48,12 +50,12 @@ def generate_unique_id(length):
     return code
 
 
-@app.route('/', methods=['GET', 'POST'])
+@app.route("/", methods=["GET", "POST"])
 def home():
     session.clear()
     if request.method == "POST":
-        text = request.form.get('paper')
-        passd = request.form.get('password')
+        text = request.form.get("paper")
+        passd = request.form.get("password")
         new_code = generate_unique_id(4)
 
         # STRINGIFY DATE AND TIME [So, that nothing goes wrong] :)
@@ -68,12 +70,12 @@ def home():
             "paper": text,
             "password": passd,
             "date": date_time,
-            "updated": 0
+            "updated": 0,
         }
 
         collection.insert_one(payload)
-        
-        session['paper_code_verified_for_access'] = new_code
+
+        session["paper_code_verified_for_access"] = new_code
 
         return redirect(url_for("paper_details", code=new_code))
 
@@ -81,10 +83,10 @@ def home():
     return render_template("home.html")
 
 
-@app.route('/paper=<code>', methods=['GET', 'POST'])
+@app.route("/paper=<code>", methods=["GET", "POST"])
 def paper_details(code):
     if request.method == "POST":
-        paper_password = request.form.get('password')
+        paper_password = request.form.get("password")
 
         paper_data = collection.find_one({"_code": code})
 
@@ -92,7 +94,7 @@ def paper_details(code):
         if paper_password == paper_data["password"]:
 
             # LOGGED IN FOR THAT SPECIFIC CODE
-            session['paper_code_verified_for_access'] = code
+            session["paper_code_verified_for_access"] = code
 
             return redirect(url_for("paper_details", code=code))
 
@@ -102,36 +104,45 @@ def paper_details(code):
             )
 
     elif request.method == "GET":
-        codes = collection.distinct('_code')
+        codes = collection.distinct("_code")
 
         if code in codes:
 
             if session.get("paper_code_verified_for_access") == code:
                 paper_data = collection.find_one({"_code": code})
 
-                return render_template("paper.html", content=paper_data["paper"], date=paper_data["date"], code=code, alert='Always remember your Paper ID and Password')
+                return render_template(
+                        "paper.html",
+                        content=paper_data["paper"],
+                        date=paper_data["date"],
+                        code=code,
+                        updated=paper_data["updated"],
+                        recid=paper_data["_id"],
+                        owner="Not Mentioned",
+                        alert="Always remember your Paper ID and Password",
+                    )
+                    
 
             return render_template("login-to-paper.html", code=code)
 
         else:
-            return (f"<h2>Paper not found !!</h2>Paper with <i>'{code}'</i> doesn't exist or is removed from PaperDisk "
-                    f"Server")
+            return (
+                f"<h2>Paper not found !!</h2>Paper with <i>'{code}'</i> doesn't exist or is removed from PaperDisk "
+                f"Server"
+            )
 
 
-@app.route('/paper=<code>/update', methods=['POST'])
+@app.route("/paper=<code>/update", methods=["POST"])
 def paper_update(code):
     if request.method == "POST":
 
-        codes = collection.distinct('_code')
+        codes = collection.distinct("_code")
         if code in codes:
 
             if session.get("paper_code_verified_for_access") == code:
-                text = request.form.get('paper')
+                text = request.form.get("paper")
 
-                payload = {
-                    "$set": {"paper": text},
-                    "$inc": {"updated": 1}
-                }
+                payload = {"$set": {"paper": text}, "$inc": {"updated": 1}}
 
                 collection.update_one({"_code": code}, payload)
 
@@ -144,9 +155,9 @@ def paper_update(code):
             abort(404)
 
 
-@app.route('/recover-paper')
+@app.route("/recover-paper")
 def paper_recovery():
-    return "<h2>Under construction !!</h2>Recovering Paper feature will be available soon, please co-operate.."
+    return "<h2>Under construction !!</h2> <label>This feature is under development and will not be released soon, because of some database issues and lack of idea for this feature..</label><p>But still if it is an emergency, you may write an email at <i>'dwijottamdutta@gmail.com'</i></p><b>But still!!</b><p>There is no gaurentee you would 100% get you paper recovered because of privacy/security issues</p><h3>So better remembers the pin and password of paper, whenever you create one !!</h3>"
 
 
-app.run(host='0.0.0.0', port=8080)
+app.run(host="0.0.0.0", port=8080)
