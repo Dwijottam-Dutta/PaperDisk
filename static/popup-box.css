@@ -34,7 +34,6 @@
 .popup .content {
     border-radius: 5px;
     background: #fff;
-    width: calc(100% - 15px);
     box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
     padding: 20px;
     padding-top: 8px;
@@ -70,5 +69,11 @@
 @media only screen and (max-width: 530px) {
     .popup-box .popup {
       max-width: 320px;
+    }
+  }
+
+  @media only screen and (max-width: 430px) {
+    .popup-box .popup {
+      max-width: 280px;
     }
   }
