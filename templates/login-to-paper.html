@@ -1,7 +1,7 @@
 {% extends '$index.html' %} {% block content %}
 
 <form method="POST" id="only_password_form">
-  <p style="font-size: medium; margin-top:5px;">Log in <b>-></b> Paper ID: <b><u>{{code}}</u></b></p>
+  <p style="font-size: medium; margin-top:5px;">Log in <b>-></b> &nbsp; <i class="far fa-hdd"></i> Disk ID: <b><u>{{code}}</u></b></p>
   <b style="margin-top: 20px">Password:</b>
   <input
     type="password"
@@ -9,13 +9,13 @@
     placeholder=">_"
     minlength="8"
     title="Make sure to remember your password for accessing your paper"
-    style="width: 70%"
+    style="width: 60%"
     required
   />
   <input type="submit" value="Continue" style="margin-top: 5px" />
 
   <p id="recovery-option">
-    Forgot Password of Paper? <a href="/recover-paper">Try Recovery</a>
+    Forgot Password of Disk? <a href="/recover-paper">Try Recovery</a>
   </p>
 
   {% if error %}

@@ -6,14 +6,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta http-equiv="X-UA-Compatible" content="ie=edge" />
   <title>PaperDisk</title>
-  <meta name="description" content="A text-storage service to store and access your documents, through a 4-digit pin">
+  <meta name="description" content="A simple text-storage service for storing and accessing your documents. You only gotta create a storage disk, and start using it as your vault for storing as much as text documents(a.k.a Paper) in the Virtual Disk">
   <meta name="keywords" content="PasteBin, Free, Dwijottam Dutta">
   <!-- <link rel="apple-touch-icon" sizes="180x180" href="{{url_for('static', filename='apple-touch-icon.png')}}" />
     <link rel="icon" type="image/png" sizes="32x32" href="{{url_for('static', filename='favicon-32x32.png')}}" />
     <link rel="icon" type="image/png" sizes="16x16" href="{{url_for('static', filename='favicon-16x16.png')}}" /> -->
   <meta name="theme-color" content="rgb(18, 18, 18)" />
   <meta property="og:title" content="PaperDisk" />
-  <meta property="og:description" content="A text-storage service to store and access your documents, through a 4-digit pin" />
+  <meta property="og:description" content="A text storage service for storing and accessing your documents by Dwijottam Dutta" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" />
   <link rel="icon" type="image/png" href="{{url_for('static', filename='paperdisk.png')}}" />
 
@@ -33,12 +33,19 @@
 
       <h1>PaperDisk</h1>
 
-      <p class="desc">A text-storage service to store and access your paper (documents)</p>
+      <p class="desc">A txt-storage service for storing your documents (paper)</p>
 
-      <div class="inline-div">
-        <button class="inline-buttons" type="button" onclick="NEW_PAPER()"><i class="far fa-plus-square"></i></button>
-        <button class="inline-buttons" type="button" onclick="OPEN_PAPER()"><i class="far fa-folder-open"></i></button>
-      </div>
+      {% if content %}
+        <div class="inline-div">
+          <button class="inline-buttons" type="button" onclick="LOGOUT()"><b>Log Out </b><i class="fas fa-sign-out-alt"></i></button>
+        </div>
+      {% else %}
+        <div class="inline-div">
+          <button href="/logout" class="inline-buttons" type="button" onclick="OPEN_DISK()"><i class="fas fa-sign-in-alt"></i> <b>Log In</b></button>
+          <!-- <button class="inline-buttons" type="button" onclick="NEW_PAPER()"><i class="far fa-plus-square"></i></button>
+          <button class="inline-buttons" type="button" onclick="OPEN_PAPER()"><i class="far fa-folder-open"></i></button> -->
+        </div>
+      {% endif %}
 
     </div>
 

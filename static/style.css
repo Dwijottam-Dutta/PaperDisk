@@ -47,6 +47,7 @@ input[type=text] {
   border-radius: .25rem;
   padding-top: 5px;
   padding-bottom: 5px;
+  width: 98%;
 }
 
 input[type=button],
@@ -117,7 +118,8 @@ h1 {
   cursor: pointer;
   background-color: transparent;
   color: #444;
-  margin-bottom: 10px;
+  margin-bottom: 5px;
+  width: fit-content;
 }
 
 
@@ -126,18 +128,19 @@ h1 {
 /* STYLING FOR ALL FORMS */
 
 .get-started-div {
-  margin-top: 20px;
+  margin-top: 30px;
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
-#new_paper_form,
-#open_paper_form {
+#open_disk_form, #new_disk_form {
   display: none;
 }
 
 #only_password_form {
-  width: 70%;
+  width: 90%;
 }
 
 /* DOCUMENT/PAPER EDITOR */
@@ -145,7 +148,7 @@ h1 {
 textarea {
   font-family: "IBM Plex Mono", monospace;
   margin-bottom: 6px;
-  margin-top: 10px;
+  margin-top: 5px;
   width: 100%;
   resize: none;
   padding: 10px;
@@ -189,6 +192,50 @@ textarea {
 #toast.show{
   transform: scale(1);
   transition: transform 0.4s ease;
+}
+
+.nav{
+  display: flex;
+  flex-direction: row;
+  place-self: flex-end;
+  margin-right: -10px;
+}
+#number{
+  border: 1px solid #ced4da;
+  padding: 0px;
+  padding-right: 10px;
+  padding-left: 10px;
+  border-radius: 5px;
+  margin-left: 5px;
+  margin-right: 5px;
+}
+.btn{
+  border: 1px solid #ced4da;
+  padding: 0px;
+  padding-right: 9px;
+  padding-left: 9px;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-right: 5px;
+}
+
+.slider{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-left: 15px;
+}
+
+.a_btn{
+  padding: 6px;
+  color: #333;
+  font-size: 16px;
+  border: 1px solid #ced4da;
+  padding: 0px;
+  padding-right: 7px;
+  padding-left: 7px;
+  border-radius: 5px;
+  cursor: pointer;
 }
 
 .menu-btn {
@@ -240,9 +287,19 @@ textarea {
 
 .field {
   display: flex;
-  flex-direction: row;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 15px;
+    border: 1.5px solid #ced4da;
+  border-radius: .35rem;
+  margin-top: 10px;
+
+}
+
+.fields{
+  padding: 5px;
   width: 100%;
-  justify-content: space-between;
 }
 
 .submit-field {
@@ -251,6 +308,7 @@ textarea {
   justify-content: end;
   align-items: end;
   width: 25%;
+  margin-top: 10px;
 }
 
 

@@ -26,14 +26,14 @@ function SYNC() {
     }, 3500);
 }
 
-// BLITTING 'OPEN PAPER' FORM
-function OPEN_PAPER() {
+// BLITTING 'OPEN DISK' FORM
+function OPEN_DISK() {
 
     try {
         document.querySelectorAll(".get-started-div")[0].style.display = "none"
-        document.querySelectorAll(".inline-div")[0].style.display = "inline-block"
-        document.getElementById("open_paper_form").style.display = "flex"
-        document.getElementById("new_paper_form").style.display = "none"
+        document.querySelectorAll(".basic-instruction")[0].style.display = "none"
+        document.getElementById("open_disk_form").style.display = "flex"
+        document.getElementById("new_disk_form").style.display = "none"
     } catch (error) {
         location.href = '/'
     }
@@ -44,9 +44,9 @@ function OPEN_PAPER() {
 function NEW_PAPER() {
     try {
         document.querySelectorAll(".get-started-div")[0].style.display = "none"
-        document.querySelectorAll(".inline-div")[0].style.display = "inline-block"
-        document.getElementById("new_paper_form").style.display = "flex"
-        document.getElementById("open_paper_form").style.display = "none"
+        document.querySelectorAll(".basic-instruction")[0].style.display = "none"
+
+        document.getElementById("new_disk_form").style.display = "flex"
     } catch (error) {
         location.href = '/'
     }
@@ -54,18 +54,19 @@ function NEW_PAPER() {
 
 try {
     // PREVENTING DEFAULT ACTION ONSUBMIT OF OPEN PAPER
-    document.getElementById("open_paper_form").addEventListener("submit", function (event) {
+    document.getElementById("open_disk_form").addEventListener("submit", function (event) {
         event.preventDefault();
         paper_code = document.getElementById("paper_code_open_button").value
         if (paper_code != null) {
             if (paper_code.trim() != "") {
-                location.href = `/paper=${paper_code}`
+                location.href = `/id=${paper_code}&paper=0`
             }
         }
     });
 } catch (error) {
     console.log("Welcome to PaperDisk !!")
 }
+
 
 
 // DOWNLOADING THE DATA
@@ -106,6 +107,10 @@ function PRINT() {
 function DETAILS() {
     popupBox = document.querySelector(".popup-box")
     popupBox.classList.add("show");
+}
+
+function LOGOUT() {
+    location.href = "/logout"
 }
 
 document.getElementById("pop_close").addEventListener("click", () => {

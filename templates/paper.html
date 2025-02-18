@@ -1,7 +1,26 @@
 {% extends '$index.html' %} {% block content %}
 
-<form action="/paper={{code}}/update" method="POST">
+<form action="/id={{code}}&paper={{buffer}}/update" method="POST">
 
+  <div class="nav">
+    <div id="add_btn" class="btn"><i class="fas fa-plus"></i></div>
+
+    {% if count > 1 %}
+    <div id="del_btn" class="btn"><i class="far fa-trash-alt"></i></div>
+    {% endif %}
+
+    <div class="slider">
+      {% if buffer != 0 %}
+      <a id="back" class="a_btn"><i class="fas fa-chevron-left"></i></a>
+      {% endif %}
+
+      <div id="number"><i class="far fa-file-alt"></i> <b>Paper-{{buffer}}</b></div>
+
+      {% if buffer != count-1 %}
+      <a id="forward" class="a_btn"><i class="fas fa-chevron-right"></i></a>
+      {% endif %}
+    </div>
+  </div>
   <textarea id="paper_doc" name="paper" rows="15" placeholder="Type your text here in this paper..." disabled="disabled"
     required>{{content}}</textarea>
 
@@ -9,16 +28,19 @@
 
   <div id="paper-nav">
 
-    <label>Paper ID: <b>{{code}}</b></label>
+    <label>Disk ID: <b>{{code}}</b></label>
     <div>
+
+
 
       <button type="button" class="inline-buttons" id="edit-button" onclick="EDITING_TURNED_ON()">
         <i class="fas fa-pen-nib"></i> <b class="phone-invisible">Edit</b>
       </button>
-
       <button type="submit" class="inline-buttons" id="save-button">
         <i class="far fa-save"></i> <b class="phone-invisible">Save</b>
       </button>
+
+
 
       <button type="button" class="inline-buttons menu-btn" onclick="SHOWMENU(this)">
         <i class="fas fa-ellipsis-v"></i>
@@ -37,7 +59,7 @@
           </li>
 
           <li type="button" onclick="DETAILS()">
-            <i class="fas fa-info-circle" style="padding-right: 10px;"></i> <strong>Details</strong>
+            <i class="far fa-question-circle" style="padding-right: 10px;"></i> <strong>Details</strong>
           </li>
         </ul>
 
@@ -52,17 +74,25 @@
   <div class="popup">
     <div class="content">
       <header>
-        <label style="font-size: 23px; font-weight: 500;">Paper details</label>
+        <label style="font-size: 23px; font-weight: 500;"><i class="far fa-hdd"></i> Details</label>
         <div id="pop_close"><i class="fas fa-times"></i></div>
       </header>
       <div>
         <div class="row">
-          <label><i class="far fa-file-alt"></i> Paper ID: </label>
+          <label><i class="far fa-file-alt"></i> Disk ID: </label>
           <label><b><u>{{code}}</u></b></label>
+        </div>
+        <div class="row">
+          <label><i class="far fa-folder-open"></i> Papers: </label>
+          <label><b>{{count}} documents</b></label>
         </div>
         <div class="row">
           <label><i class="far fa-calendar-alt"></i> Created on: </label>
           <label><b>{{date}}</b></label>
+        </div>
+        <div class="row">
+          <label><i class="fas fa-user-tie"></i> Author: </label>
+          <label><b>{{owner}}</b></label>
         </div>
         <div class="row">
           <label><i class="fas fa-history"></i> Modified: </label>
@@ -83,5 +113,80 @@
 
 
 </div>
+<script>
 
+  document.getElementById("add_btn").addEventListener("click", function (event) {
+    event.preventDefault();
+    fetch("/id={{code}}&paper={{buffer}}/add", {
+      method: "POST",
+      body: "",
+      headers: {
+        "Content-type": "application/json; charset=UTF-8"
+      }
+    })
+      .then(response => response.text())
+      .then((response) => {
+        if (response == "success") {
+          location.href = "/id={{code}}&paper={{buffer+1}}"
+        }
+        else {
+          alert("Unexpected Error occured while adding paper")
+        }
+      })
+  });
+
+  document.getElementById("del_btn").addEventListener("click", function (event) {
+    event.preventDefault();
+    alert("Deleting Paper from a disk is permanent, and can't be recovered!!")
+    confirm = prompt("If you still want to delete, then enter the Disk ID, to confirm its you: ")
+    if (confirm == "{{code}}") {
+      fetch("/id={{code}}&paper={{buffer}}/delete", {
+        method: "POST",
+        body: "",
+        headers: {
+          "Content-type": "application/json; charset=UTF-8"
+        }
+      })
+        .then(response => response.text())
+        .then((response) => {
+          if (response == "success") {
+            location.href = "/id={{code}}&paper=0"
+          }
+          else {
+            alert("Unexpected Error occured while adding paper")
+          }
+        })
+    }
+    else {
+      alert("Enter valid details.")
+    }
+  })
+
+
+
+  try {
+    document.getElementById("forward").addEventListener("click", function (event) {
+      event.preventDefault();
+
+      window.location.replace("/id={{code}}&paper={{buffer+1}}")
+
+    })
+  }
+  catch (e) {
+    console.log(e)
+  }
+
+  try {
+    document.getElementById("back").addEventListener("click", function (event) {
+      event.preventDefault();
+
+      window.location.replace("/id={{code}}&paper={{buffer-1}}")
+
+    })
+  }
+  catch (e) {
+    console.log(e)
+  }
+
+</script>
 {% endblock %}
