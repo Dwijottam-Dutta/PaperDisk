@@ -1,10 +1,12 @@
-{% extends '$index.html' %}
+{% extends '$index.html.jinja' %}
+
+{% block title %} {{super()}} {% endblock %}
 {% block content %}
 
   <!-- NAVIGATION FORM -->
    <div class="basic-instruction">
     <hr style="width: 70px;margin-top: 0px;">
-      <p style="font-size: smaller;margin-top:30px;text-align: center;">Forget about hectic cloud storage services, for document storage.<br><b>-</b><br> Store your documents (a.k.a <i>Paper</i>) in <i>virtually</i> on <i>Cloud</i>, just by a 4-digit code and a strong password, that's it!! <br><b>-</b><br>More <i><u>stronger</u></i> password, more <i><u>safe</u></i> and <i><u>secure</u></i> your Disk becomes<br><b>-</b><br>
+      <p style="font-size: small;margin-top:30px;text-align: center;width: 60%;">Forget about premium cloud storage services, for document storage.<br><b>-</b><br> Store unlimited documents (a.k.a <i>Paper</i>) on <i>Cloud</i> <i class="fas fa-cloud"></i> for free, just by a 4-digit code and a strong password, that's it!! <br><b>-</b><br>More <i><u>stronger</u></i> password, more <i><u>safe</u></i> and <i><u>secure</u></i> your Disk becomes<br><b>-</b><br>
    </div>
   <div class="get-started-div">
     <button class="welcome-buttons" type="button" onclick="NEW_PAPER()"><i class="fas fa-hdd"></i> <b>Create Disk</b></button>
@@ -60,4 +62,8 @@
 
   </form>
 
+{% endblock %}
+
+{% block script %} 
+<script src="{{url_for('static', filename='js/home.js')}}"></script>
 {% endblock %}

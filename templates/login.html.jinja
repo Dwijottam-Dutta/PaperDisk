@@ -1,4 +1,8 @@
-{% extends '$index.html' %} {% block content %}
+{% extends '$index.html.jinja' %} 
+
+{% block title %} <title>Log In - PaperDisk | {{code}}</title> {% endblock %}
+
+{% block content %}
 
 <form method="POST" id="only_password_form">
   <p style="font-size: medium; margin-top:5px;">Log in <b>-></b> &nbsp; <i class="far fa-hdd"></i> Disk ID: <b><u>{{code}}</u></b></p>

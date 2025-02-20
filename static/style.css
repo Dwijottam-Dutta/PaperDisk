@@ -110,6 +110,7 @@ h1 {
   padding-right: 10px;
   padding-top: 4px;
   padding-bottom: 4px;
+  font-size: smaller;
 }
 
 
@@ -128,14 +129,22 @@ h1 {
 /* STYLING FOR ALL FORMS */
 
 .get-started-div {
-  margin-top: 30px;
+  margin-top: 15px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
 }
 
-#open_disk_form, #new_disk_form {
+.basic-instruction {
+  display: flex;
+  flex-direction: column;
+  /* justify-content: center; */
+  align-items: center;
+}
+
+#open_disk_form,
+#new_disk_form {
   display: none;
 }
 
@@ -189,18 +198,20 @@ textarea {
   transition: transform 0.4s ease;
 }
 
-#toast.show{
+#toast.show {
   transform: scale(1);
   transition: transform 0.4s ease;
 }
 
-.nav{
+.nav {
   display: flex;
   flex-direction: row;
   place-self: flex-end;
   margin-right: -10px;
+  font-size: medium;
 }
-#number{
+
+#number {
   border: 1px solid #ced4da;
   padding: 0px;
   padding-right: 10px;
@@ -209,7 +220,8 @@ textarea {
   margin-left: 5px;
   margin-right: 5px;
 }
-.btn{
+
+.btn {
   border: 1px solid #ced4da;
   padding: 0px;
   padding-right: 9px;
@@ -219,14 +231,14 @@ textarea {
   margin-right: 5px;
 }
 
-.slider{
+.slider {
   display: flex;
   justify-content: center;
   align-items: center;
   margin-left: 15px;
 }
 
-.a_btn{
+.a_btn {
   padding: 6px;
   color: #333;
   font-size: 16px;
@@ -287,17 +299,17 @@ textarea {
 
 .field {
   display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    padding: 15px;
-    border: 1.5px solid #ced4da;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 15px;
+  border: 1.5px solid #ced4da;
   border-radius: .35rem;
   margin-top: 10px;
 
 }
 
-.fields{
+.fields {
   padding: 5px;
   width: 100%;
 }
@@ -391,17 +403,19 @@ footer {
   .inline {
     top: 18px;
   }
+
   label {
     font-size: medium;
   }
 
   .inline-div {
     top: 18px;
-}
+  }
 
 }
+
 @media only screen and (max-width: 350px) {
-  .phone-invisible{
+  .phone-invisible {
     display: none;
   }
 }

@@ -7,10 +7,10 @@
 """
 
 import random
-from db import *
 from string import octdigits
 from datetime import datetime
 from flask import Flask, render_template, request, session, redirect, url_for, abort
+from db import *
 
 # Flask Configurations
 app = Flask(__name__)
@@ -21,7 +21,7 @@ app.config["SECRET_KEY"] = "123456"
 
 
 # GENERATE [NEW-UNIQUE-SECURE] PAPER ID
-def generate_unique_id(length):
+def GENERATE_UNIQUE_CODE(length):
     codes = collection.distinct("_code")
 
     while True:
@@ -41,7 +41,7 @@ def home():
     if request.method == "POST":
         passd = request.form.get("password")
         owner = request.form.get("owner")
-        new_code = generate_unique_id(4)
+        new_code = GENERATE_UNIQUE_CODE(4)
 
         # STRINGIFY DATE AND TIME [So, that nothing goes wrong] :)
         now = datetime.now()
@@ -71,7 +71,7 @@ def home():
     if logged:
         return redirect(url_for("paper_details", code=logged, buffer=0))
     
-    return render_template("home.html")
+    return render_template("home.html.jinja")
 
 
 @app.route("/id=<code>&paper=<buffer>", methods=["GET", "POST"])
@@ -95,7 +95,7 @@ def paper_details(code, buffer):
 
             else:
                 return render_template(
-                    "login-to-paper.html", error="Wrong Password.", code=code
+                    "login.html.jinja", error="Wrong Password.", code=code
                 )
 
         elif request.method == "GET":
@@ -113,7 +113,7 @@ def paper_details(code, buffer):
                     try:
                         # TRY GETTING INFO FOR THE ONES WHICH ARE CREATED AFTER UPDATE
                         return render_template(
-                            "paper.html",
+                            "paper.html.jinja",
                             content=paper_data["data"][buffer],
                             date=paper_data["date"],
                             code=code,
@@ -127,7 +127,7 @@ def paper_details(code, buffer):
                     except Exception:
                         # GET INFO OF OLD DISKS
                         return render_template(
-                                "paper.html",
+                                "paper.html.jinja",
                                 content=paper_data["data"][buffer],
                                 date=paper_data["date"],
                                 code=code,
@@ -141,7 +141,7 @@ def paper_details(code, buffer):
                         
                         
 
-                return render_template("login-to-paper.html", code=code)
+                return render_template("login.html.jinja", code=code)
 
             else:
                 return (
@@ -150,7 +150,7 @@ def paper_details(code, buffer):
                 )
 
         
-    except ValueError:
+    except Exception:
         abort(404)
 
 @app.route("/id=<code>&paper=<buffer>/update", methods=["POST"])
