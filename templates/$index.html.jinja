@@ -46,14 +46,12 @@
 
       {% if code %}
       <div class="inline-div">
-        <button class="inline-buttons" type="button" onclick="LOGOUT()"><b>Log Out </b><i
+        <button class="inline-buttons" type="button" onclick="LOGOUT()"><b class="phone-invisible">Log Out </b><i
             class="fas fa-sign-out-alt"></i></button>
       </div>
       {% else %}
       <div class="inline-div">
         <button href="/logout" class="inline-buttons" type="button" onclick="OPEN_DISK()"><b>Open</b> <i class="far fa-folder-open"></i></button>
-        <!-- <button class="inline-buttons" type="button" onclick="NEW_PAPER()"><i class="far fa-plus-square"></i></button>
-          <button class="inline-buttons" type="button" onclick="OPEN_PAPER()"><i class="far fa-folder-open"></i></button> -->
       </div>
       {% endif %}
 
@@ -65,16 +63,16 @@
 
   <hr>
   <footer>
-    <p class="dev">Made by <a href="https://dwijottam-dutta.github.io">Dwijottam Dutta</a></p>
+    <div style="display: flex;">
+      <p class="dev" style="margin-right: 10px;"><a href="/premium">Donate Us</a></p>
+      {# <p class="dev"><a href="https://dwijottam-dutta.github.io">Changelog</a></p> #}
+    </div>
+    <p class="dev">Made by <a href="https://dwijottam-dutta.github.io">@dwijottam</a></p>
   </footer>
 
   <script src="{{url_for('static', filename='js/api.js')}}"></script>
 
   {% block script %} {% endblock %}
-
-  <script>
-    TOAST("{{alert}}")
-  </script>
 </body>
 
 

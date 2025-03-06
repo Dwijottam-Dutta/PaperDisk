@@ -42,6 +42,13 @@ function PRINT() {
     TOAST("Printing Service API is not available on your system");
 }
 
+function THEME(){
+    localStorage.setItem("theme", "pale")
+    document.body.classList.toggle("pale");
+    document.getElementById("paper_doc").classList.toggle("shadow");
+    document.getElementById("paper-nav").classList.toggle("shadow");
+}
+
 // DETAILS MENU
 function DETAILS() {
     popupBox = document.querySelector(".popup-box");
@@ -56,4 +63,8 @@ pop_close.addEventListener("click", () => {
 // LOGOUT
 function LOGOUT() {
     location.href = "/logout";
+}
+
+if (localStorage.getItem("theme") == "pale"){
+    THEME()
 }

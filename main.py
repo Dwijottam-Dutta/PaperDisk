@@ -262,7 +262,7 @@ def paper_logout():
 
 @app.route("/premium")
 def premium():
-    return "<h2>Donate Us:</h2> <label>For keeping PaperDisk, 24/7 uptime running, and for lifetime we need your support!!<br>For maintanance of our database and server, we need money, to not get run out of storage.</label><p>If you like this project by me, please don't forget to donate some money on UPI: <b><i>9137745935@fam</i></b></p><b>It would be a great help for me as a single developer to handle all of the work!!</b><h3>Thank you !!</h3>"
+    return "<h2>Donate Us:</h2> <label>For keeping PaperDisk, 24/7 uptime running, and for lifetime we need your support!!<br>For maintanance of our database and server, we need money, to not get run out of storage.</label><p>If you like this project by me, please don't forget to donate some money on <br><br> &nbsp; UPI: <b><i>9137745935@fam</i></b></p><b>It would be a great help for me as a single developer to handle all of the work!!</b><h3>Thank you !!</h3>"
 
 
 if __name__ == "__main__":

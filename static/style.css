@@ -1,11 +1,47 @@
+
 body {
-  color: #444;
+
+  --theme: #fff;
+  --theme-sub: antiquewhite;
+  --border: #ced4da;
+  --color: #444;
+
+  color: var(--color);
   margin: 0.5em auto;
   max-width: 40em;
   padding: 0 .62em;
   font-size: 1.125em;
   line-height: 1.62em;
   font-family: "IBM Plex Mono", monospace;
+  background: var(--theme);
+}
+
+body.pale{
+  --theme: bisque;
+  --border: #444;
+  --color: #444;
+  --theme-sub:burlywood;
+}
+
+
+/* width */
+::-webkit-scrollbar {
+  width: 3px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #0000000f; 
+}
+ 
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: var(--color); 
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555; 
 }
 
 .main {
@@ -43,7 +79,7 @@ input[type=password],
 input[type=text] {
   font-family: "IBM Plex Mono", monospace;
   font-size: 1rem;
-  border: 1px solid #ced4da;
+  border: 1px solid var(--border);
   border-radius: .25rem;
   padding-top: 5px;
   padding-bottom: 5px;
@@ -54,7 +90,7 @@ input[type=button],
 input[type=submit],
 button {
   display: inline-block;
-  border: 1px solid #ced4da;
+  border: 1px solid var(--border);
   font-size: 1rem;
   font-family: "IBM Plex Mono", monospace;
   border-radius: .25rem;
@@ -90,7 +126,7 @@ h1 {
 
 .desc {
   margin-top: 10px;
-  font-weight: 200;
+  font-weight: 400;
   margin-bottom: 25px;
 }
 
@@ -111,6 +147,7 @@ h1 {
   padding-top: 4px;
   padding-bottom: 4px;
   font-size: smaller;
+  background: var(--theme);
 }
 
 
@@ -160,12 +197,19 @@ textarea {
   margin-top: 5px;
   width: 100%;
   resize: none;
-  padding: 10px;
+  padding: 0.4em;
   font-size: 1rem;
   line-height: 25px;
-  border: 1px solid #ced4da;
+  border: 1px solid var(--border);
   border-radius: .25rem;
   transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+}
+
+#paper_doc.shadow{
+  box-shadow:  6px 6px #44444457;
+  margin-bottom: 14px;
+  border: 2px solid var(--border);
+  background: rgb(255 255 255 / 20%);
 }
 
 #paper-nav {
@@ -173,19 +217,25 @@ textarea {
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
-  border: 1px solid #ced4da;
+  border: 1px solid var(--border);
   border-radius: .25rem;
   transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
-  width: 101%;
+  width: 100%;
   padding: 0.3em;
+}
+
+#paper-nav.shadow{
+  box-shadow:  6px 6px #44444457;
+  border: 2px solid var(--border);
+  background: rgb(255 255 255 / 20%);
 }
 
 #toast {
   display: flex;
   position: absolute;
   font-size: smaller;
-  bottom: 60px;
-  background-color: antiquewhite;
+  bottom: 70px;
+  background-color: var(--theme-sub);
   padding: 3px;
   border-radius: .25rem;
   padding-left: 10px;
@@ -194,13 +244,30 @@ textarea {
   text-decoration: solid;
   transform: scale(0);
   transform-origin: bottom;
-  box-shadow: 0 0 6px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 0 6px rgba(0, 0, 0, 0.25);
   transition: transform 0.4s ease;
 }
 
 #toast.show {
   transform: scale(1);
   transition: transform 0.4s ease;
+}
+
+#spray{
+    background-color: var(--theme-sub);
+    padding: 1px 8px;
+    opacity: 0.9;
+    border-radius: 1rem;
+    position: absolute;
+    font-size: smaller;
+    top: 42px;
+    right: 2px;
+    text-decoration: solid;
+    cursor: pointer;
+    box-shadow: 0 0 6px rgba(0, 0, 0, 0.25);
+}
+#spray:hover{
+  opacity: 1;
 }
 
 .nav {
@@ -212,7 +279,7 @@ textarea {
 }
 
 #number {
-  border: 1px solid #ced4da;
+  border: 1px solid var(--border);
   padding: 0px;
   padding-right: 10px;
   padding-left: 10px;
@@ -222,7 +289,7 @@ textarea {
 }
 
 .btn {
-  border: 1px solid #ced4da;
+  border: 1px solid var(--border);
   padding: 0px;
   padding-right: 9px;
   padding-left: 9px;
@@ -242,7 +309,7 @@ textarea {
   padding: 6px;
   color: #333;
   font-size: 16px;
-  border: 1px solid #ced4da;
+  border: 1px solid var(--border);
   padding: 0px;
   padding-right: 7px;
   padding-left: 7px;
@@ -257,11 +324,11 @@ textarea {
 .menu {
   margin: 0;
   z-index: 10000;
-  bottom: 50px;
+  bottom: 55px;
   right: 0;
   list-style: none;
   padding: 0;
-  background: white;
+  background-color: var(--theme);
   position: absolute;
   border-radius: 4px;
   transform: scale(0);
@@ -289,7 +356,7 @@ textarea {
   border-radius: 0;
   justify-content: flex-start;
   transition: transform 1s ease-in-out;
-  /* border-bottom: 1px solid #ced4da; */
+  /* border-bottom: 1px solid var(--border); */
 }
 
 .menu-btn .menu li:hover {
@@ -303,7 +370,7 @@ textarea {
   justify-content: center;
   align-items: center;
   padding: 15px;
-  border: 1.5px solid #ced4da;
+  border: 1.5px solid var(--border);
   border-radius: .35rem;
   margin-top: 10px;
 
@@ -327,7 +394,7 @@ textarea {
 .open-field {
   display: flex;
   flex-direction: column;
-  border: 1.5px solid #ced4da;
+  border: 1.5px solid var(--border);
   border-radius: .25rem;
   transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
   padding: 15px;
@@ -362,22 +429,22 @@ textarea {
 hr {
   width: 100%;
   margin-top: 30px;
-  color: #ced4da;
+  color: var(--border);
   border-color: #ced4da3f;
 }
 
 footer {
   display: flex;
   flex-direction: row;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
-  margin-left: 15px;
-  margin-right: 15px;
+  margin-left: 5px;
+  margin-right: 5px;
 }
 
 
 .dev {
-  font-size: 12px;
+  font-size: 11px;
   margin-top: 0;
   font-weight: 500;
 }
