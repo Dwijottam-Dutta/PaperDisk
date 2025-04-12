@@ -29,7 +29,7 @@
     required>{{content}}</textarea>
 
   <div id="toast">You can now edit your paper</div>
-  <div id="spray" onclick="THEME()"><i class="fas fa-spray-can"></i></div>
+  <div id="spray" onclick="paperdisk.theme.set('pale')"><i class="fas fa-spray-can"></i></div>
 
   <div id="paper-nav">
 
@@ -122,7 +122,7 @@
 <script src="{{url_for('static', filename='js/paper.js')}}"></script>
 <script>
 
-  TOAST("{{alert}}")
+  paperdisk.toast("{{alert}}")
   function download() {
       var element = document.createElement("a");
 
@@ -141,7 +141,7 @@
 
       document.body.removeChild(element);
 
-      TOAST("Downloaded Successfully", alert);
+      paperdisk.toast("Downloaded Successfully", alert);
   }
 
 

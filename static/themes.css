@@ -1,0 +1,45 @@
+/* 
+
+* This file contains all the color scheme of PaperDisk Themes
+* Handle it with care
+* --dwijottam
+
+*/
+
+body.default{
+    --theme: #fff;
+    --theme-sub: antiquewhite;
+    --border: #ced4da;
+    --color: #444;
+}
+
+
+/* PALE THEME */
+body.pale{
+    --theme: bisque;
+    --border: #444;
+    --color: #444;
+    --theme-sub:burlywood;
+}
+
+/* DARKSEAGREEN THEME */
+body.darkseagreen{
+    --theme: darkseagreen;
+    --border: #121212;
+    --color: #121212;
+    --theme-sub:rgb(104, 174, 104);
+}
+
+body.goldenrod{
+    --theme: goldenrod;
+    --border: #000;
+    --color: #000;
+    --theme-sub:rgb(224, 172, 39);
+}
+
+body.darkkhaki{
+    --theme: darkkhaki;
+    --border: #000;
+    --color: #000;
+    --theme-sub:rgb(165, 160, 85);
+}

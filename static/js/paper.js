@@ -1,6 +1,6 @@
 // TURNING ON EDITING
 function EDITING_TURNED_ON() {
-    TOAST("Editing Turned ON", alert);
+    paperdisk.toast("Editing Turned ON", alert);
     document.getElementById("save-button").style.display = "inline-block";
     document.getElementById("edit-button").style.display = "none";
     document.getElementById("paper_doc").disabled = false;
@@ -20,7 +20,7 @@ function EDITING_TURNED_ON() {
 
 // SYNC FUNCTION
 function SYNC() {
-    TOAST("Syncing your Disk!!", alert);
+    paperdisk.toast("Syncing your Disk!!", alert);
 
     setTimeout(() => {
         location.reload();
@@ -39,15 +39,10 @@ function SHOWMENU(elem) {
 
 // PRINTING API
 function PRINT() {
-    TOAST("Printing Service API is not available on your system");
+    paperdisk.toast("Printing Service API is not available on your system");
 }
 
-function THEME(){
-    localStorage.setItem("theme", "pale")
-    document.body.classList.toggle("pale");
-    document.getElementById("paper_doc").classList.toggle("shadow");
-    document.getElementById("paper-nav").classList.toggle("shadow");
-}
+
 
 // DETAILS MENU
 function DETAILS() {
@@ -65,6 +60,13 @@ function LOGOUT() {
     location.href = "/logout";
 }
 
-if (localStorage.getItem("theme") == "pale"){
-    THEME()
+
+if (localStorage.getItem("theme")){
+    if (localStorage.getItem("theme") !== "default"){
+        paperdisk.theme.set(localStorage.getItem("theme"));
+    }
 }
+
+// if (localStorage.getItem("effect")){
+//     paperdisk.theme.effect(localStorage.getItem("effect"));
+// }

@@ -1,11 +1,5 @@
 
 body {
-
-  --theme: #fff;
-  --theme-sub: antiquewhite;
-  --border: #ced4da;
-  --color: #444;
-
   color: var(--color);
   margin: 0.5em auto;
   max-width: 40em;
@@ -14,13 +8,7 @@ body {
   line-height: 1.62em;
   font-family: "IBM Plex Mono", monospace;
   background: var(--theme);
-}
-
-body.pale{
-  --theme: bisque;
-  --border: #444;
-  --color: #444;
-  --theme-sub:burlywood;
+  transition: background 3s ease-in;
 }
 
 
@@ -141,7 +129,7 @@ h1 {
 .inline-buttons {
   cursor: pointer;
   background-color: transparent;
-  color: #444;
+  color: var(--color);
   padding-left: 10px;
   padding-right: 10px;
   padding-top: 4px;
@@ -199,10 +187,11 @@ textarea {
   resize: none;
   padding: 0.4em;
   font-size: 1rem;
+  color: #000;
   line-height: 25px;
   border: 1px solid var(--border);
   border-radius: .25rem;
-  transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+  transition: border-color 2s ease-out, box-shadow 2s ease-out;
 }
 
 #paper_doc.shadow{
@@ -219,7 +208,7 @@ textarea {
   justify-content: space-between;
   border: 1px solid var(--border);
   border-radius: .25rem;
-  transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+  transition: border-color 2s ease-out, box-shadow 2s ease-out;
   width: 100%;
   padding: 0.3em;
 }
@@ -430,7 +419,8 @@ hr {
   width: 100%;
   margin-top: 30px;
   color: var(--border);
-  border-color: #ced4da3f;
+  opacity: 30%;
+  border-color: var(--border);
 }
 
 footer {
