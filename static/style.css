@@ -8,7 +8,6 @@ body {
   line-height: 1.62em;
   font-family: "IBM Plex Mono", monospace;
   background: var(--theme);
-  transition: background 3s ease-in;
 }
 
 
