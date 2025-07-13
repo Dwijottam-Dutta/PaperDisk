@@ -7,6 +7,7 @@
 *   
 *   Note:
 *   Its 17th March 2025, and PaperDisk hits nostalgia, and so far its just awesome!!
+*   Its 13th July 2025, and PaperDisk need to be updated with some new features and bug fixes and kinda formal
 
 """
 
@@ -24,10 +25,9 @@ app.config["SECRET_KEY"] = "123456"
 
 
 
-# GENERATE [NEW-UNIQUE-SECURE] PAPER ID
+# GENERATE [NEW-UNIQUE-SECURE] DISK ID
 def GENERATE_UNIQUE_CODE(length):
     codes = collection.distinct("_code")
-
     while True:
         code = ""
         for _ in range(length):
@@ -35,7 +35,6 @@ def GENERATE_UNIQUE_CODE(length):
 
         if code not in codes:
             break
-
     return code
 
 
@@ -43,11 +42,9 @@ def GENERATE_UNIQUE_CODE(length):
 def home():
     # session.clear()
     if request.method == "POST":
-        passd = request.form.get("password")
-        owner = request.form.get("owner")
         new_code = GENERATE_UNIQUE_CODE(4)
 
-        # STRINGIFY DATE AND TIME [So, that nothing goes wrong] :)
+        # STRINGIFY DATE AND TIME [So, that nothing goes wrong]
         now = datetime.now()
         now.strftime("%Y")
         now.strftime("%m")
@@ -57,10 +54,12 @@ def home():
         payload = {
             "_code": new_code,
             "data": ["// Your Disk has been created successfully!!\n// All yours!!"],
-            "password": passd,
+            "disk_name": request.form.get("disk_name"),
+            "email": request.form.get("email"),
+            "password": request.form.get("password"),
             "date": date_time,
             "updated": 0,
-            "owner": owner
+            "owner": request.form.get("owner")
         }
 
         collection.insert_one(payload)
@@ -69,7 +68,7 @@ def home():
 
         return redirect(url_for("paper_details", code=new_code, buffer=0))
 
-    # WELCOMING THE CUSTOMER :)
+    # WELCOMING THE CUSTOMER
     logged = session.get("paper_code_verified_for_access")
     
     if logged:
@@ -114,34 +113,21 @@ def paper_details(code, buffer):
                     if count == 0:
                         return "<h2>Something went wrong!!</h2><label>It looks like your disk has been <b>corrupted</b>!!</label><p>This may be due to explicit request to the server. Please do contact the developer.</p>"
                     
-                    try:
-                        # TRY GETTING INFO FOR THE ONES WHICH ARE CREATED AFTER UPDATE
-                        return render_template(
-                            "paper.html.jinja",
-                            content=paper_data["data"][buffer],
-                            date=paper_data["date"],
-                            code=code,
-                            buffer=buffer,
-                            updated=paper_data["updated"],
-                            recid=paper_data["_id"],
-                            owner=paper_data["owner"],
-                            count=count,
-                            alert="Always remember your Disk ID and Password",
-                        )
-                    except Exception:
-                        # GET INFO OF OLD DISKS
-                        return render_template(
-                                "paper.html.jinja",
-                                content=paper_data["data"][buffer],
-                                date=paper_data["date"],
-                                code=code,
-                                buffer=buffer,
-                                updated=paper_data["updated"],
-                                recid=paper_data["_id"],
-                                owner="N/A",
-                                count=count,
-                                alert="Always remember your Disk ID and Password",
-                            )
+                    # NEW GENERATION DISKS
+                    return render_template(
+                        "paper.html.jinja",
+                        disk_name=paper_data.get("disk_name", "Unknown"),
+                        content=paper_data["data"][buffer],
+                        date=paper_data["date"],
+                        code=code,
+                        buffer=buffer,
+                        updated=paper_data["updated"],
+                        recid=paper_data["_id"],
+                        recemail=paper_data.get("email", "N/A"),
+                        owner=paper_data.get("owner", "N/A"),
+                        count=count,
+                        alert="Always remember your Disk ID and Password",
+                    )
                         
                         
 
@@ -193,12 +179,10 @@ def paper_add(code, buffer):
         buffer = int(buffer)
         
         if request.method == "POST":
-
             codes = collection.distinct("_code")
             if code in codes:
 
                 if session.get("paper_code_verified_for_access") == code:
-
 
                     now = datetime.now()
                     now.strftime("%H")

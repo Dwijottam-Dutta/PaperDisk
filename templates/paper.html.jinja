@@ -85,7 +85,11 @@
       </header>
       <div>
         <div class="row">
-          <label><i class="far fa-file-alt"></i> Disk ID: </label>
+          <label><i class="far fa-file-alt"></i> Name: </label>
+          <label><b>{{disk_name}}</b></label>
+        </div>
+        <div class="row">
+          <label><i class="fas fa-fingerprint"></i> Disk ID: </label>
           <label><b><u>{{code}}</u></b></label>
         </div>
         <div class="row">
@@ -103,6 +107,10 @@
         <div class="row">
           <label><i class="fas fa-history"></i> Modified: </label>
           <label><b>{{updated}} times</b></label>
+        </div>
+        <div class="row">
+          <label><i class="fas fa-at"></i> Email: </label>
+          <i>{{recemail}}</i>
         </div>
         <div class="row">
           <label><i class="fas fa-trash-restore"></i> Recovery ID: </label>

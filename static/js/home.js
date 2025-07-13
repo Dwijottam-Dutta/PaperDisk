@@ -14,7 +14,8 @@ function OPEN_DISK() {
 function NEW_PAPER() {
     try {
         document.querySelectorAll(".get-started-div")[0].style.display = "none";
-        document.querySelectorAll(".basic-instruction")[0].style.display = "none";
+        document.getElementById("open_disk_form").style.display = "none";
+        document.querySelectorAll(".basic-instruction")[0].style.display = "flex";
 
         document.getElementById("new_disk_form").style.display = "flex";
     } catch (error) {

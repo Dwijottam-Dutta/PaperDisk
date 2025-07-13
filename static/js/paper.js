@@ -20,7 +20,7 @@ function EDITING_TURNED_ON() {
 
 // SYNC FUNCTION
 function SYNC() {
-    paperdisk.toast("Syncing your Disk!!", alert);
+    paperdisk.toast('Syncing your Disk <i class="fas fa-sync li-icon"></i>', alert);
 
     setTimeout(() => {
         location.reload();
@@ -39,7 +39,7 @@ function SHOWMENU(elem) {
 
 // PRINTING API
 function PRINT() {
-    paperdisk.toast("Printing Service API is not available on your system");
+    paperdisk.toast('<i class="fas fa-print"></i> Print Service API is not available', alert);
 }
 
 

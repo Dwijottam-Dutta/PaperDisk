@@ -63,7 +63,7 @@ form {
 }
 
 input[type=password],
-input[type=text] {
+input[type=text],input[type=email] {
   font-family: "IBM Plex Mono", monospace;
   font-size: 1rem;
   border: 1px solid var(--border);
@@ -153,7 +153,7 @@ h1 {
 /* STYLING FOR ALL FORMS */
 
 .get-started-div {
-  margin-top: 15px;
+  margin-top: 25px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -161,13 +161,12 @@ h1 {
 }
 
 .basic-instruction {
-  display: flex;
+  display: none;
   flex-direction: column;
   /* justify-content: center; */
   align-items: center;
 }
 
-#open_disk_form,
 #new_disk_form {
   display: none;
 }

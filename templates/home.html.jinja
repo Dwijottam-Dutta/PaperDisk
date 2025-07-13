@@ -3,14 +3,31 @@
 {% block title %} {{super()}} {% endblock %}
 {% block content %}
 
-  <!-- NAVIGATION FORM -->
-   <div class="basic-instruction">
-    <hr style="width: 70px;margin-top: 0px;">
-      <p style="font-size: small;margin-top:30px;text-align: center;width: 60%;">Forget about premium cloud storage services, for document storage.<br><b>-</b><br> Store unlimited documents (a.k.a <i>Paper</i>) on <i>Cloud</i> <i class="fas fa-cloud"></i> for free, just by a 4-digit code and a strong password, that's it!! <br><b>-</b><br>More <i><u>stronger</u></i> password, more <i><u>safe</u></i> and <i><u>secure</u></i> your Disk becomes<br><b>-</b><br>
-   </div>
+
+{# <hr style="width: 70px;margin-top: 0px;"> #}
+
+    <!-- OPEN PAPER FORM   --  COMING SOON-->
+  <form id="open_disk_form">
+
+      <label><i class="fas fa-hdd"></i> <b>Login to Disk</b></label>
+      <hr style="width: 24px;margin-top: 10px;">
+    <div class="open-field">
+      <b style="padding-bottom: 8px;">Disk ID:</b>
+      <input placeholder="XXXX" type="text" name="paper" id="paper_code_open_button" maxlength="4" minlength="4" title="Enter your Disk ID" required>
+      <div class="open-field-button">
+        <input type="submit" value="Next">
+      </div>
+      {# <p id="recovery-option">Forgot Disk ID? <a href="/recover-paper">Try Recovery</a></p> #}
+
+    </div>
+
+
+  </form>
+
+
   <div class="get-started-div">
+    <p style="font-size: small; margin-bottom: 7px;">New to PaperDisk? Don't have a Disk?</p>
     <button class="welcome-buttons" type="button" onclick="NEW_PAPER()"><i class="fas fa-hdd"></i> <b>Create Disk</b></button>
-    <!-- <p style="font-size: small;margin-top: 2px;">[A disk has limit of holding unlimited papers, but it may glitch sometimes]</p> -->
   </div>
 
 
@@ -19,9 +36,13 @@
     <!-- <textarea name="paper" rows="15" placeholder="Your typing space.." data-provide="markdown" required></textarea> -->
 
     <label><i class="fas fa-hdd"></i> <b> Create Disk</b></label>
-    <hr style="width: 24px;margin-top: 17px;">
+    <hr style="width: 24px;margin-top: 10px;">
     <div class="field">
         
+      <div class="fields">
+        <b>Disk Name:</b>
+        <input placeholder="Name of your Disk" type="text" name="disk_name" minlength="4" title="Name of your Disk, it will be used to identify your Disk">
+      </div>
       <div class="fields">
         <b>Disk ID:</b>
         <i style="font-size: medium;">[4-digit]</i>
@@ -30,38 +51,32 @@
 
       <div class="fields">
         <b>Password:</b>
-        <input placeholder=">_" type="password" name="password" minlength="8" title="Make sure to remember your password for editing and accessing your paper" required>
+        <input placeholder=">_" type="password" name="password" minlength="8" title="Make sure to remember your Disk Password" required>
       </div>
 
       <div class="fields">
         <b>Author:</b>
-        <input placeholder="John" type="text" name="owner" minlength="4" title="Owner of this Disk">
+        <input placeholder="Add your name here" type="text" name="owner" minlength="4" title="Name of the owner of this Disk">
       </div>
 
+      <div class="fields">
+        <b>Email: <span style="font-weight: 300; font-size:smaller">[recovery]</span></b>
+        <input placeholder="Add recovery email address" type="email" name="email" minlength="4" title="Recovery Email Address, incase you forgot your Disk Password">
+      </div>
+      <p style="font-size: small;">Let us keep this service free <b>></b> <a href="upi://pay?cu=INR&pa=9137745935@fam&pn=Dwijottam%20Dutta&mam=1&tn=PaperDisk-donation">Donate us</a></p>
       <div class="submit-field">
         <input type="submit" value="Create" id="button">
       </div>
 
     </div>
   </form>
+  <div class="basic-instruction">
+      <p style="font-size: small;margin-top:10px;text-align: center;width: 60%;"><br>More <i><u>stronger</u></i> password, more <i><u>safe</u></i> and <i><u>secure</u></i> your Disk becomes<br><b>-</b><br>
+   </div>
+  
 
 
-  <!-- OPEN PAPER FORM   --  COMING SOON-->
-  <form id="open_disk_form">
 
-    <div class="open-field">
-
-      <b style="padding-bottom: 8px;"><i class="far fa-hdd"></i> Disk ID:</b>
-      <input placeholder="XXXX" type="text" name="paper" id="paper_code_open_button" maxlength="4" minlength="4" title="Enter your Paper ID" required>
-      <div class="open-field-button">
-        <input type="submit" value="Open">
-      </div>
-      <p id="recovery-option">Forgot Disk ID? <a href="/recover-paper">Try Recovery</a></p>
-
-    </div>
-
-
-  </form>
 
 {% endblock %}
 
